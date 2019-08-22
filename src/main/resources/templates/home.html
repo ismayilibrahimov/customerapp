@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+</head>
+<body>
+<div th:replace="fragments/header :: header"></div>
+
+<main role="main" class="container mt-5">
+    <div class="jumbotron">
+        <h1>Welcome to new Application</h1>
+        <p class="lead">To connect the world’s professionals to make them more productive and successful.
+            To be a company that inspires and fulfils your curiosity.
+            To help humanity thrive by enabling all teams to work together effortlessly.</p>
+        <a class="btn btn-lg btn-primary" th:href="@{/register}" role="button">Register now</a>
+    </div>
+</main>
+
+
+<div th:replace="fragments/footer :: footer"></div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script th:src="@{/js/bootstrap.bundle.min.js}" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+<script th:src="@{/js/form-validation.js}"></script></body>
+</html>

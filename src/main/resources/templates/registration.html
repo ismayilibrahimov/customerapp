@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        .bd-placeholder-img {
+            font-size: 1.125rem;
+            text-anchor: middle;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        @media (min-width: 768px) {
+            .bd-placeholder-img-lg {
+                font-size: 3.5rem;
+            }
+        }
+    </style>
+    <!-- Custom styles for this template -->
+    <link th:href="@{/css/form-validation.css}" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+<div th:replace="fragments/header :: header"></div>
+
+
+<div class="container">
+    <div class="py-5 text-center">
+        <h2>Registration</h2>
+    </div>
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 order-md-1">
+            <form class="needs-validation" novalidate  th:action="@{/register}" method="post" th:object="${user}">
+
+                <div class="mb-3">
+                        <label for="fullName">Full name</label>
+                        <input type="text" th:field="*{fullname}" class="form-control" id="fullName" placeholder="Full name" required>
+                        <div class="invalid-feedback">
+                            Valid first name is required.
+                        </div>
+                        <span class="text-danger" th:each="error: ${#fields.errors('fullname')}" th:text="${error}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="username">Username</label>
+                    <div class="input-group">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text">@</span>
+                        </div>
+                        <input type="text" th:field="*{username}" class="form-control" id="username" placeholder="Username" required>
+                        <div class="invalid-feedback" style="width: 100%;">
+                            Your username is required.
+                        </div>
+                    </div>
+                    <span class="text-danger" th:if="${errorMessage}" th:text="${errorMessage}"></span>
+                    <span class="text-danger" th:each="error: ${#fields.errors('username')}" th:text="${error}"></span>
+                </div>
+
+                <div class="mb-3">
+                        <label for="password">Password</label>
+                        <input type="password" th:field="*{password}" class="form-control" id="password" placeholder="Password" required>
+                        <div class="invalid-feedback" style="width: 100%;">
+                            Your password is required.
+                        </div>
+                        <span class="text-danger" th:each="error: ${#fields.errors('password')}" th:text="${error}"></span>
+                </div>
+
+                <div class="mb-3">
+                    <label for="confirmPassword">Confirm Password</label>
+                    <input type="password" th:field="*{confirmPassword}" class="form-control" id="confirmPassword" placeholder="Confirm Password" required>
+                    <div class="invalid-feedback" style="width: 100%;">
+                        Your confirm password is required.
+                    </div>
+                    <span class="text-danger" th:each="error: ${#fields.errors('confirmPassword')}" th:text="${error}"></span>
+                </div>
+
+
+                <hr class="mb-4">
+
+
+                <div class="row">
+                    <div class="col-md-3 mb-3">
+
+                        <h6 class="mb-3">Gender</h6>
+
+                        <div class="d-block my-3">
+                            <div class="custom-control custom-radio">
+                                <input id="male" type="radio" th:field="*{gender}" value="1" class="custom-control-input" required checked>
+                                <label class="custom-control-label" for="male">Male</label>
+                            </div>
+                            <div class="custom-control custom-radio">
+                                <input id="female" type="radio" th:field="*{gender}" value="0" class="custom-control-input" required>
+                                <label class="custom-control-label" for="female">Female</label>
+                            </div>
+                            <span class="text-danger" th:each="error: ${#fields.errors('gender')}" th:text="${error}"></span>
+                        </div>
+
+                    </div>
+
+
+                    <div class="col-md-3 mb-3">
+                        <label for="age"><h6 class="mb-2">Age</h6></label>
+                        <input type="number" th:field="*{age}" class="form-control" id="age" placeholder="Age" required>
+                        <div class="invalid-feedback">
+                            Age required
+                        </div>
+                        <span class="text-danger" th:each="error: ${#fields.errors('age')}" th:text="${error}"></span>
+                    </div>
+
+                </div>
+                <hr class="mb-4">
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Sign Up</button>
+            </form>
+        </div>
+    </div>
+
+    <div th:replace="fragments/footer :: footer"></div>
+</div>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script>window.jQuery || document.write('<script src="/docs/4.3/assets/js/vendor/jquery-slim.min.js"><\/script>')</script>
+<script th:src="@{/js/bootstrap.bundle.min.js}" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+<script th:src="@{/js/form-validation.js}"></script></body>
+</html>
